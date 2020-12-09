@@ -5,9 +5,12 @@ export interface IPos {
     y: number;
 }
 
+export type Position = IPos | ((context: CanvasRenderingContext2D) => IPos);
+
 export type StrokeStyle = string | CanvasGradient | CanvasPattern;
 export type StrokeOptions = {
-    strokeStyle: string | CanvasGradient | CanvasPattern, lineWidth: number;
+    strokeStyle: StrokeStyle,
+    lineWidth?: number;
 };
 
 export interface IStroke extends IDrawable {
@@ -16,8 +19,8 @@ export interface IStroke extends IDrawable {
 }
 
 export interface IStartEnd {
-    start: IPos;
-    end: IPos;
+    start: Position;
+    end: Position;
 }
 
 export interface IDrawable {

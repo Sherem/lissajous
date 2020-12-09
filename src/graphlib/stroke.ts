@@ -2,7 +2,7 @@ import { StrokeOptions, IStroke } from "./graphlib.interfaces";
 import { StrokeGroup } from "./strokeGroup";
 
 export abstract class Stroke implements IStroke {
-    private parent?: StrokeGroup;
+    protected parent?: StrokeGroup;
 
     protected constructor(public strokeOptions?: StrokeOptions) {
     }
@@ -10,8 +10,11 @@ export abstract class Stroke implements IStroke {
     draw(context: CanvasRenderingContext2D): void {
         if (!this.parent) {
             if (this.strokeOptions) {
-                context.strokeStyle = this.strokeOptions.strokeStyle;
-                context.lineWidth = this.strokeOptions.lineWidth;
+                const {lineWidth, strokeStyle} = this.strokeOptions;
+                context.strokeStyle = strokeStyle;
+                if (lineWidth) {
+                    context.lineWidth = lineWidth;
+                }
             }
             context.beginPath();
         }

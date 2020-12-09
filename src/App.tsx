@@ -7,7 +7,7 @@ import { Line } from "./graphlib/line";
 import { StrokeGroup } from "./graphlib/strokeGroup";
 
 function App() {
-    const element: IDrawable = new StrokeGroup("red").add(new Line({
+    const element: IDrawable = new StrokeGroup({ strokeStyle: "red", lineWidth:1 }).add(new Line({
         x: 10,
         y: 10,
     }, {
@@ -19,7 +19,7 @@ function App() {
     }, {
         x: 100,
         y: 10,
-    }, "red"));
+    }));
 
     return (
         <div className="App">

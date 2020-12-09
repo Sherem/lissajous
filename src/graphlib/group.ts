@@ -1,6 +1,7 @@
 import { IDrawable, IGroup } from "./graphlib.interfaces";
 
 export class Group implements IGroup {
+
     private elements: IDrawable[] = [];
     add(element: IDrawable | IDrawable[]): IGroup {
         if (Array.isArray(element)) {

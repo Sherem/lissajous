@@ -1,10 +1,10 @@
 import { Group } from "./group";
-import { StrokeOptions, IStroke, Position, IPos } from "./graphlib.interfaces";
+import { StrokeOptions, IStroke, Position, IPos, IPositionable } from "./graphlib.interfaces";
 import { Stroke } from "./stroke";
 import { getPos } from "./utils";
 
-export class StrokeGroup extends Stroke {
-    private pos: Position;
+export class StrokeGroup  extends Stroke implements IPositionable {
+    pos: Position;
     private group: Group = new Group();
 
     public constructor(strokeOptions?: StrokeOptions, pos: Position = {

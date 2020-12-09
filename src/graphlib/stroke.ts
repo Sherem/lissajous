@@ -1,4 +1,4 @@
-import { StrokeOptions, IStroke } from "./graphlib.interfaces";
+import { StrokeOptions, IStroke, IPos } from "./graphlib.interfaces";
 import { StrokeGroup } from "./strokeGroup";
 
 export abstract class Stroke implements IStroke {
@@ -18,16 +18,26 @@ export abstract class Stroke implements IStroke {
             }
             context.beginPath();
         }
-        this.doDraw(context);
+        this.doDraw(context, this.getParentOffset(context));
         if (!this.parent) {
             context.stroke();
         }
     }
 
-    protected abstract doDraw(context: CanvasRenderingContext2D): void;
+    protected abstract doDraw(context: CanvasRenderingContext2D, offset: IPos): void;
 
     setParent(parent: StrokeGroup): void {
         this.parent = parent;
     }
 
+    protected getParentOffset(context: CanvasRenderingContext2D): IPos {
+        if (this.parent) {
+            return this.parent.getPos(context);
+        } else {
+            return  {
+                x: 0,
+                y: 0,
+            }
+        }
+    }
 }

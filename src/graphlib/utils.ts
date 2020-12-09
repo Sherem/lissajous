@@ -1,4 +1,4 @@
-import { IPos, Position } from "./graphlib.interfaces";
+import { IPos, Position, Size } from "./graphlib.interfaces";
 
 export function shift(...pos: IPos[]): IPos {
     return pos.reduce((res, { x, y }) => ({
@@ -18,5 +18,13 @@ export function getPos(pos: Position, context: CanvasRenderingContext2D, offset:
         return shift(pos(context), offset);
     } else {
         return shift(pos, offset);
+    }
+}
+
+export function getSize(size: Size, context: CanvasRenderingContext2D): number {
+    if (typeof size === "function") {
+        return size(context);
+    } else {
+        return size;
     }
 }

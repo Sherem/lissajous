@@ -7,15 +7,8 @@ export class Line extends Stroke implements IStartEnd, IStroke {
         super(strokeOptions);
     }
 
-    doDraw(context: CanvasRenderingContext2D): void {
+    doDraw(context: CanvasRenderingContext2D, offset: IPos): void {
         const { start, end } = this;
-        let offset: IPos = {
-            x: 0,
-            y: 0,
-        };
-        if (this.parent) {
-            offset = this.parent.getPos(context);
-        }
         const { x: x1, y: y1 } = getPos(start, context, offset);
         const { x: x2, y: y2 } = getPos(end, context, offset);
         context.moveTo(x1, y1);

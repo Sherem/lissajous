@@ -14,13 +14,14 @@ export const Canvas: React.FC<ICanvas> = ({ children }: ICanvas) => {
         if (context && div.current) {
             const { height, width } = getComputedStyle(div.current);
 
-            const dpr = window.devicePixelRatio || 1;
+            // const dpr = window.devicePixelRatio || 1;
+            const dpr =  1;
 
             const { canvas } = context;
             canvas.width = parseInt(width) * dpr;
             canvas.height = parseInt(height) * dpr;
 
-            context.scale(dpr, dpr);
+            // context.scale(dpr, dpr);
         }
     }, [context]);
 
